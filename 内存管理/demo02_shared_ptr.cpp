@@ -1,7 +1,8 @@
 /*
  * shared_ptr:
+ *			最接近原始指针
  *			包装了new操作符在堆上分配的动态对象
- *			使用了引用计数的智能指针,可以被自由的拷贝和赋值,引用计数为0才被删除
+ *			使用了"引用计数"的智能指针,可以被自由的拷贝和赋值,引用计数为0才被删除
  *
  * 构造函数:
  *			无参的shared_ptr() -- > 空指针的
@@ -88,7 +89,7 @@ void test_shared_ptr_count_2(){
 
 
 void test_shared_ptr_factory(){
-	
+	// make_shared<T>(value)
 	auto sp = make_shared<string>("make_shared");
 	auto spv = make_shared<vector<int>>(10, 2);
 	assert(spv->size() == 10);
@@ -103,7 +104,7 @@ void test_shared_ptr_in_std_container(){
 	int i = 0;
 	for(auto pos = v.begin(); pos != v.end(); ++pos){
 		*pos = make_shared<int>(++i);
-		cout << *(*pos) << ",";
+		cout << *(*pos) << ",";  // *pos为shared_ptt<> *(*pos)为指针指向的值
 	}
 	cout << endl;
 

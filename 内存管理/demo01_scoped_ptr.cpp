@@ -1,8 +1,8 @@
 /*
- * 局部对象,利用RAII机制会很好的工作(析构函数会被执行),但是new操作在堆上创建的对象,
+ * 局部对象,利用RAII机制(声明及初始化)会很好的工作(析构函数会被执行),但是new操作在堆上创建的对象,
  * 意味着可能存在内存泄漏.
  *
- * boots.smart_ptr库的优点,对于其指向的类型T析构函数不能抛出异常
+ * boots.smart_ptr库的优点,对于其指向的类型T析构函数不能抛出异常(前提)
  *
  * scoped_ptr的工作原理和特点
  *			包装了new操作符在堆上分配的动态对象,能够保证对象在任何人时候都被正确的删除
@@ -30,7 +30,7 @@ struct posix_file{
 
 void test_scoped_ptr(){
 	scoped_ptr<string> sp(new string("text"));
-	assert(sp);				// 使用显示bool操作
+	assert(sp);				// 使用显示bool操作 -- 定义了operator bool()
 	assert(sp != nullptr);	// 与空指针比较操作 -- 只能与空指针比较
 	//assert(sp == sp);		// scoped_str对象间不能比较
 	cout << *sp << endl;			// text -- 操作符*重载
