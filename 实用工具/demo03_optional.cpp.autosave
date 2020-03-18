@@ -1,4 +1,4 @@
-/*
+﻿n/*
  *	optional -- 使用容器语义,包装了可能产生无效值得对象,实现了未初始化的概念 收入C++17标准
  *
  * 
@@ -28,7 +28,7 @@ void test_optional_usage(){
 	assert(!op0);							// bool测试
 	assert(op0 == op1);						// 比较两个optional对象
 
-	assert(op1.value_or(253) == 253);		// value_or获取默认值,如果op1未初始化,则返回传入参数253
+	assert(op1.value_or(253) == 253);		// 获取默认值
 	cout << op1.value_or_eval([](){return 874;}) << endl;	//使用函数对象
 
 	optional<string> ops("test");

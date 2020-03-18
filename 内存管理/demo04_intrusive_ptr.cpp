@@ -1,7 +1,7 @@
 /*
  *	intrusive_ptr : 引用计数型智能指针
  *
- *  intrusive_ptr不管理引用计数, 通过两个函数管理引用计数
+ *  intrusive_ptr 不管理引用计数, 通过两个函数管理引用计数
  *
  *  intrusive_ptr构造函数和reset有 add_ref参数, 表示是否增加引用
  */
@@ -31,8 +31,8 @@ void test_intrusive_ptr_usage(){
 	counted_ptr p2(p);
 	assert(p->m_count == 2);
 
-	counted_ptr weak_p(p.get(), false);			// 弱引用
-	assert(weak_p->m_count == 2);				// 引用计数不增加
+	counted_ptr weak_p(p.get(), false);			// , 弱引用
+	assert(weak_p->m_count == 2);				// 构造传入false,引用计数不增加
 
 	p2.reset();
 	assert(!p2);

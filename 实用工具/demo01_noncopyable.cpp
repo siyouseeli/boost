@@ -8,7 +8,7 @@ using namespace std;
 using namespace boost;
 
 
-class do_not_copy : noncopyable{};
+class do_not_copy : noncopyable{};	// C++ class关键字开头的默认继承方式是 private(成员变量和成员函数默认也是 private)
 
 void test_noncopyable_usage(){
 	do_not_copy d1;

@@ -44,7 +44,7 @@ void test_shared_ptr_use(){
 	sp_t sp(new string("one"));		//一个shapred_ptr独享
 	m[sp] = 111;					
 
-	cout << sp << endl;				// 重载operator<<,输出指针值
+	cout << sp << endl;				// 重载operator<<,输出指针值(地址)
 }
 
 
@@ -79,12 +79,12 @@ void print_func(shared_ptr<int> p){					// 没有使用引用参数,会增加sha
 void test_shared_ptr_count_2(){
 	shared_ptr<int> p(new int(100));
 	shared s1(p), s2(p);				
-	s1.print();
-	s2.print();
+	s1.print();		//3
+	s2.print();		//3
 
 	*p = 20;
-	print_func(p);
-	s1.print();
+	print_func(p);	//由于参数是值传递,所以输出 4
+	s1.print();		// 函数返回析构,引用计数减1 输出3
 }
 
 

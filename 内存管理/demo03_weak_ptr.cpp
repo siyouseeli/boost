@@ -27,7 +27,7 @@ void test_weak_ptr_usage(){
 	weak_ptr<int> wkp2 = wkp1;	
 
 	cout << "shared_ptr的引用计数为: " << sp1.use_count() << endl;
-	cout << "构造一次.赋值一次,weak_ptr的引用计数为: " << wkp1.use_count() << endl;
+	cout << "构造一次.赋值一次,weak_ptr的引用计数为: " << wkp1.use_count() << endl;	// 1
 	
 	cout << "weak_ptr:wkp1的指针有效期= " << wkp1.expired() << endl;
 	cout << "weak_ptr:wkp2的指针有效期= " << wkp2.expired() << endl;
@@ -53,7 +53,7 @@ void test_weak_ptr_self_manange(){
 	auto sp = make_shared<self_shared>(313);
 	sp->print();
 
-	auto p = sp->shared_from_this();
+	auto p = sp->shared_from_this();		// 继承自enable_shared_from_this,获取shared<>的智能指针
 	p->x = 1000;
 	p->print();
 

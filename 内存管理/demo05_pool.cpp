@@ -1,5 +1,5 @@
 /*
- *	pool基于 简单分割存储 思想实现 快速紧凑的内存池库,补技能狗管理大量对象,也可为STL的内存分配器
+ *	pool基于 简单分割存储 思想实现 快速紧凑的内存池库,不仅能够管理大量对象,也可为STL的内存分配器
  *  近似于 小型的 垃圾回收机制,不需要delete对象
  */
 #include <boost/pool/pool.hpp>
@@ -46,7 +46,7 @@ void test_object_pool_usage(){
 
 	//p指向的内存未经初始化
 	assert(p->a != 1 || p->b != 2 || p->c != 3);
-	p = p1.construct(7, 8, 9);		//构造一个对象,可以传递参数
+	p = p1.construct(7, 8, 9);		//构造一个对象,可以传递参数,调用demo_class的构造函数
 	assert(p->a == 7);
 
 	object_pool<string> pls;		// 定义一个分配string对象的内存池
