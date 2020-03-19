@@ -60,7 +60,6 @@ void test_list_insert_usgae(){
 	// operator+= 作用于容器时调用工厂函数push_back(),产生list_inserter对象,以这个对象为起点
 	// 随后的operator() 和 operator, 会被执行
 
-
 	/* operator() */
 	vector<int> v1;
 	push_back(v1)(1)(2)(3)(4)(5);
@@ -87,14 +86,13 @@ void test_generic_list_usage(){
 	deque<string> d1 = list_of("power")("a")("b");
 	for(auto x : d1){
 		cout << x << " ";	// [output]power a b
-							// 按键值升序排列
+							
 	}
 	cout << endl;
 
 	map<int, string> m2 = list_of(make_pair(1, "one")) (make_pair(2, "two"));
 	for(auto x : m2){
 		cout << x.first << "-->" << x.second << " ";	// [output]1-->one 2-->Two 
-														// 按键值升序排列
 														// list_of处理map容器不方便
 	}
 	cout << endl;
@@ -103,7 +101,6 @@ void test_generic_list_usage(){
 	map<int, string> m4 = pair_list_of(1, "one")(2, "two")(3, "three");
 	for(auto x : m3){
 		cout << x.first << "-->" << x.second << " ";	// [output]1-->one 2-->Two 
-														// 按键值升序排列
 														// map_list_of接受两个参数,省去了make_pair
 	}
 	cout << endl;
@@ -119,7 +116,7 @@ int get_int(){
 }
 /* 重复输入 */
 void test_assign_repeat(){
-	vector<int> v1 = list_of(1).repeat(3, 2)(4)(5)(6);		// repeat(size_t coutm U v)
+	vector<int> v1 = list_of(1).repeat(3, 2)(4)(5)(6);		// repeat(size_t cout, U v)
 	for(auto x : v1){	
 		cout << x << " ";	// [output]1 2 2 2 4 5 6    -- 3个 2
 							// 按键值升序排列
@@ -169,7 +166,7 @@ void test_non_std_usage(){
 /* 接受引用参数 */
 void test_assign_ref_param(){
 	int a = 1, b = 2, c = 3;
-	vector<int> v = ref_list_of<3>(a)(b)(c);
+	vector<int> v = ref_list_of<3>(a)(b)(c);		// 防止出现拷贝开销
 	for (auto &x :v){
 		x += 1;				//每个元素加1
 	}
