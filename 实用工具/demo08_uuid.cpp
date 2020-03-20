@@ -141,9 +141,9 @@ void test_sha1_usage(){
 	sha1 sha;
 
 	const char *szMsg = "a short message";
-	sha.process_byte(0x10);
-	sha.process_bytes(szMsg, strlen(szMsg));
-	sha.process_block(szMsg, szMsg+strlen(szMsg));
+	sha.process_byte(0x10);							// 一个字节
+	sha.process_bytes(szMsg, strlen(szMsg));		// 多个字节
+	sha.process_block(szMsg, szMsg+strlen(szMsg));	//一个块
 
 	unsigned int digest[5];
 	sha.get_digest(digest);

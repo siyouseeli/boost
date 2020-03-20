@@ -21,13 +21,13 @@ void test_const_binary(){
 	cout << bitset<5>(BOOST_BINARY(0110)) << endl;
 }
 
-double func(){
-	cout << BOOST_CURRENT_FUNCTION << endl;		// 调用函数名
+double func(int x){
+	cout << BOOST_CURRENT_FUNCTION << endl;		// [output]double func(int)  -- BOOST_CURRENT_FUNCTION,调用函数名
 
 }
 int main(){
 
 	//test_const_binary();
-	func();
+	func(1);
 	return 0;
 }

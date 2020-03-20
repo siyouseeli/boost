@@ -1,11 +1,11 @@
 /*
- * boost.exception 针对标准库异常的缺陷进行了强化,重载了<<操作符,可以向异常传入任何数据,有助于增加
- * 异常信息的表达能力
+ * boost.exception 针对标准库异常的缺陷进行了强化,重载了<<操作符,可以向异常传入
+ * 任何数据,有助于增加 异常信息的表达能力
  *
  * 定义错误信息类型:
- *			基本方法:typedef boost::error_info<struct tag_err_int, int> err_int; --不适用于大量的错误类型
+ *			基本方法:typedef boost::error_info<struct tag_err_int, int> err_int; --不适用于大量的错误类型,因为得挨个定义
  *	        进阶方法: 使用boost.exception库自定义的若干错误信息类		
- *		    自定义方法:#define DEFINE_ERROR_INFO(type, name) \
+ *		    通过boost库宏定义错误类型:#define DEFINE_ERROR_INFO(type, name) \
  *											typedef boost::error_info<struct tag_##name, type> name
  *
  * 包装异常类
@@ -20,6 +20,7 @@ using namespace std;
 
 #define DEFINE_ERROR_INFO(type, name) \
 				typedef boost::error_info<struct tag_##name, type> name
+
 
 struct my_exception : virtual std::exception, virtual boost::exception{};
 typedef boost::error_info<struct tag_err_int, int> err_int;
@@ -82,8 +83,8 @@ void test_define_my_exception(){
 void test_enable_error_info(){
 	struct my_err{};
 	try{
-		throw enable_error_info(my_err()) << throw_function(BOOST_CURRENT_FUNCTION);	// 返回的一个拷贝 --性能
-	}catch(boost::exception &e){			// 返回的是子类,所以此处用父类也可以 -- 多态
+		throw enable_error_info(my_err()) << throw_function(BOOST_CURRENT_FUNCTION);	// enable_error_info返回的一个拷贝 --性能
+	}catch(boost::exception &e){														// 返回的是子类,所以此处用父类也可以 -- 多态
 		cout << *get_error_info<throw_function>(e) << endl;
 	}
 }
