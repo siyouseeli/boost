@@ -4,6 +4,7 @@
  * BOOST_DISABLE_ASSERTS
  *		断言取消
  * BOOST_ENABLE_ASSERT_HANDLER
+ *      启用handler
  *  	debug 和 release 都会运行
  */
 #define BOOST_ENABLE_ASSERT_HANDLER		// 启用handler
